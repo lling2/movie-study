@@ -1,0 +1,15 @@
+<template name='cinemaPart'>
+  <navigator url=''>
+    <view class='name-price' hover-class='none'>
+    aa
+    <text class='sell-price'><text class='price'>100</text>元起</text>
+    </view>
+    <view class='addres'>
+      <text class='line-ellipsis'>zz</text>
+      <text class='distance'>aa</text>
+    </view>
+    <view class='tags'>
+    
+    </view>
+  </navigator>
+</template>

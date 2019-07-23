@@ -1,0 +1,63 @@
+<import src='../../../templates/loadingMore/loadingMore.wxml' />
+<!-- <import src='../../../templates/movieSection/movieSection.wxml' /> -->
+<import src='../../../templates/moviePart/moviePart.wxml'/>
+
+<!-- selectItem事件、 -->
+<view>
+  <view class='topbar'>
+    <!-- 城市选择 -->
+    <navigator class='city-entry' url=''>
+      <view class='cityName'></view>
+    </navigator>
+    <view class='switcHhot'>
+      <!-- 点击时变换样式 -->
+      <view class='hot-item {{switchItem === 0 ? "active" : ""}}' data-item='{{0}}' bindtap='switchHot'>正在热映</view>
+      <view class='hot-item {{switchItem === 1 ? "active" : ""}}' data-item='{{1}}' bindtap='switchHot'>即将上映</view>
+    </view>
+    <!-- 搜索 -->
+    <navigator class='search-entry' url='../../subPages/search-page/search-page?stype=-1'>
+      <text class='iconfont icon-sousuo'></text>
+    </navigator>
+  </view>
+
+  <view class='switch-content'>
+    <!-- 正在热映 -->
+    <view hidden='{{switchItem===1}}'>
+      <template is='moviePart' wx:for='{{movieList0}}' wx:for-item='movie' wx:key='{{movie.id}}' data='{{movie: movie}}'/>
+      <!-- 展示正在加载modal（还没展示完毕 同时 还有数据） -->
+      <view wx:if='{{!loadComplete0 && movieList0.length}}'>
+        <template is="loadingMore" />
+      </view>
+    </view>
+
+    <!-- 即将上映 -->
+    <view hidden='{{switchItem===0}}'>
+      <!-- 近期最期待 -->
+      <view class='expect'>
+        <view class='title'>近期最期待上映</view>
+        <scroll-view scroll-x bindscrolltolower='lower' class='scroll-view_H'>
+          <navigator class='expect-item' url='' wx:for='{{expectList1}}' wx:for-item='movie' wx:key='{{movie.id}}'>
+            <image src='{{movie.img}}' class='pic'></image>
+            <view class='name line-ellipsis'>{{movie.nm}}</view>
+            <view class='data line-ellipsis'>{{movie.wish}}人想看</view>
+            <view class='data'>{{movie.comingTitle}}</view>
+          </navigator>
+        </scroll-view>
+      </view>
+      <!-- 即将上映 -->
+      <view hidden='{{switchItem===0}}'>
+        <block wx:for='{{movieList1}}' wx:for-item='movie' wx:key='{{movie.id}}' data='{{movie: movie}}'>
+          <block wx:if='{{index===0||movieList1[index-1].comingTitle!==movie.comingTitle}}'>
+            <view class='title'>{{movie.comingTitle}}</view>
+            <template is='moviePart' data='{{movie: movie, rt: true}}'/>
+          </block>
+          <template wx:else is='moviePart' data='{{movie: movie, rt: true}}'></template>
+        </block>
+        <view wx:if='{{!loadComplete1 && movieList1.length}}'>
+          <template is="loadingMore" />
+        </view>
+      </view>
+    </view>
+  
+  </view>
+</view>

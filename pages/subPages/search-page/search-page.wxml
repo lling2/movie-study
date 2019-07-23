@@ -1,0 +1,30 @@
+<import src='../../../templates/nothing/nothing.wxml' />
+<import src='../../../templates/moviePart/moviePart.wxml'/>
+<view class='serach-wrap'>
+  <view class='search-header topbar'>
+    <input class='search-input' placeholder='{{placeholder}}' bindinput='search' placeholder-class='phcolor'></input>
+    <!-- 搜索图标 -->
+    <text class='iconfont icon-sousuo'></text>
+    <view class='cancel' bindtap='goBack'>取消</view>
+  </view>
+  <view class='result-list'>
+    <view wx:if='{{movies.length}}' class='movie-wrap'>
+      <view class='title'>电影/电视/综艺</view>
+      <navigator class='movie-section' wx:for='{{movies}}' wx:for-item='movie' wx:key='{{movie.id}}'>
+        <image class='movie-img' src='{{movie.img}}'></image>
+        <view class='movie-info'>
+          <view class='movie-name'>{{movie.nm}}
+          <text class='version {{movie.version}}'></text>
+          </view>
+          <view class='line-ellipsis'>{{movie.enm}}</view>
+          <view class='line-ellipsis'>{{movie.cat}}</view>
+          <view class='line-ellipsis'>{{movie.rt}}</view>
+        </view>
+        <view class='score'>
+          <text class='grade' wx:if='{{movie.sc}}'>{{movie.sc}}分起</text>
+          <text wx:else>暂无评分</text>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
