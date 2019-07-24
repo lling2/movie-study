@@ -6,8 +6,9 @@
 <view>
   <view class='topbar'>
     <!-- 城市选择 -->
-    <navigator class='city-entry' url=''>
-      <view class='cityName'></view>
+    <navigator class='city-entry' url='../../subPages/city-select/city-select'>
+      <view class='city-name'>{{city}}</view>
+      <text class='city-entry-arrow'></text>
     </navigator>
     <view class='switcHhot'>
       <!-- 点击时变换样式 -->

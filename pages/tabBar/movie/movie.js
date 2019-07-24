@@ -1,5 +1,7 @@
+const app = getApp()
 Page({
   data:{
+    city: '正在定位...',
     switchItem: 0,
     // 正在上映数据
     movieList0: [],
@@ -12,7 +14,31 @@ Page({
     loadComplete1: false, ////‘即将上映’数据是否加载到最后一条 默认false
     loadComplete2: false //表示水平加载
   },
+  onLoad(){
+    this.firstLoad();
+    // setTimeout(() => this.initPage(), 3000)
+    console.log(app.globalData, 'movieload');
+  },
   onReady(){
+    console.log(app.globalData, 'movie');
+  },
+  initPage(){
+    //https://www.jianshu.com/p/aaf65625fc9d   解释的很好
+    if (app.globalData.userLocation) {
+      this.setData({
+        city: app.globalData.selectCity ? app.globalData.selectCity.cityName : '定位失败'
+      })
+    } else {
+      // console.log(app.userLocationReadyCallback, 'globaldatd');
+      // this.setData({
+      //     city: app.globalData.selectCity ? app.globalData.selectCity.cityName : '定位失败'
+      //   })
+      app.userLocationReadyCallback = () => {
+        this.setData({
+          city: app.globalData.selectCity ? app.globalData.selectCity.cityName : '定位失败'
+        })
+      }
+    };
     this.firstLoad();
   },
   firstLoad(){
@@ -31,6 +57,9 @@ Page({
           _this.setData({loadComplete0: true});
         }
         wx.hideLoading();
+      },
+      complete: () => {
+
       }
     })
   },

@@ -2,7 +2,8 @@
   "pages": [
     "pages/tabBar/movie/movie",
     "pages/tabBar/user/user",
-    "pages/subPages/search-page/search-page"
+    "pages/subPages/search-page/search-page",
+    "pages/subPages/city-select/city-select"
   ],
   "window": {
     "backgroundTextStyle": "light",

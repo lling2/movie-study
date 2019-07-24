@@ -22,7 +22,7 @@ App({
   },
   //获取用户的位置信息
   getUserLocation() {
-    const _this = this;
+    const that = this;
     wx.getLocation({
       //成功授权
       success: (res) => {
@@ -44,8 +44,9 @@ App({
               cityName: cityFullname.substring(0, cityFullname.length-1),
               status: 1
             };
-            _this.globalData.userLocation = {...cityInfo}   //浅拷贝对象
-            _this.globalData.selectCity = {...cityInfo} //浅拷贝对象
+            that.globalData.userLocation = {...cityInfo} //浅拷贝对象
+            that.globalData.selectCity = {...cityInfo} //浅拷贝对象
+            console.log(that.globalData, 'that.globalData');
             if(this.userLocationReadyCallback){
               this.userLocationReadyCallback();
             }
