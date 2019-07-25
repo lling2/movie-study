@@ -1,7 +1,7 @@
 const app = getApp();
 // 存在公共的方法
 const util = require('../../../utils/util.js');
-const throttle = util.throttle
+const throttle = util.throttle;
 const citys = [{
   'id': '1',
   'city_name': '上海',
