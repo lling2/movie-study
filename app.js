@@ -46,16 +46,15 @@ App({
             };
             that.globalData.userLocation = {...cityInfo} //浅拷贝对象
             that.globalData.selectCity = {...cityInfo} //浅拷贝对象
-            console.log(that.globalData, 'that.globalData');
-            if(this.userLocationReadyCallback){
-              this.userLocationReadyCallback();
+            if (that.userLocationReadyCallback){
+              that.userLocationReadyCallback();
             }
           },
           fail: () => {
-            this.globalData.userLocation = { status: 0 }
+            that.globalData.userLocation = { status: 0 }
             //防止当弹框出现后，用户长时间不选择，
-            if (this.userLocationReadyCallback) {
-              this.userLocationReadyCallback()
+            if (that.userLocationReadyCallback) {
+              that.userLocationReadyCallback()
             }
           }
         })

@@ -1,4 +1,4 @@
-const app = getApp()
+const app = getApp();
 Page({
   data:{
     city: '正在定位...',
@@ -15,24 +15,18 @@ Page({
     loadComplete2: false //表示水平加载
   },
   onLoad(){
-    this.firstLoad();
-    // setTimeout(() => this.initPage(), 3000)
-    console.log(app.globalData, 'movieload');
+    this.initPage();
   },
   onReady(){
-    console.log(app.globalData, 'movie');
+    
   },
   initPage(){
     //https://www.jianshu.com/p/aaf65625fc9d   解释的很好
-    if (app.globalData.userLocation) {
+    if (app.globalData.userLocation && app.globalData.userLocation.length>0) {
       this.setData({
         city: app.globalData.selectCity ? app.globalData.selectCity.cityName : '定位失败'
       })
     } else {
-      // console.log(app.userLocationReadyCallback, 'globaldatd');
-      // this.setData({
-      //     city: app.globalData.selectCity ? app.globalData.selectCity.cityName : '定位失败'
-      //   })
       app.userLocationReadyCallback = () => {
         this.setData({
           city: app.globalData.selectCity ? app.globalData.selectCity.cityName : '定位失败'
